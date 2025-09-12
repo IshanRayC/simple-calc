@@ -32,6 +32,7 @@ print("6. Exit")
 
 choice=input("Enter choice(1/2/3/4/5/6): ")
 while choice in ['1','2','3','4','5']:
+    print("Welcome to the simple calculator!")
     num1=float(input("Enter first number: "))
     num2=float(input("Enter second number: "))
     if choice=='1':
@@ -50,4 +51,3 @@ while choice in ['1','2','3','4','5']:
     choice=input("Enter choice(1/2/3/4/5/6): ")
 if choice=='6':
     print("Exiting the calculator. Goodbye!")
-    break
