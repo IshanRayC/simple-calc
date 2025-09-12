@@ -7,6 +7,7 @@ A simple Python calculator project that demonstrates basic Git and GitHub usage.
 - Subtraction
 - Multiplication
 - Division (with zero-check)
+- Exponential
 
 ## Requirements
 - Python 3.7+  
