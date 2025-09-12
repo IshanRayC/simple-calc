@@ -1,6 +1,6 @@
 # Simple Calc
 
-A simple Python calculator project that demonstrates basic Git and GitHub usage.
+A simple Python project that perfoms basic mathematical operations on any two given numbers
 
 ## Features
 - Addition
