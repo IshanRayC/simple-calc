@@ -14,6 +14,9 @@ def div(a, b):
 def pow(a,b):
     return a**b
 
+def pow(a,b):
+    return a**b
+
 if __name__ == "__main__":
     print("#Example of the calculator")
     print("2 + 3 =", add(2,3))
@@ -21,6 +24,7 @@ if __name__ == "__main__":
     print("3 * 4 =", mul(3,4))
     print("8 / 2 =", div(8,2))
     print("9 ^ 3 =", pow(9,3))
+<<<<<<< HEAD
 
 print("for performing calculations kindly enter the number of the function")
 print("1. Addition")
@@ -51,3 +55,5 @@ while choice in ['1','2','3','4','5']:
     choice=input("Enter choice(1/2/3/4/5/6): ")
 if choice=='6':
     print("Exiting the calculator. Goodbye!")
+=======
+>>>>>>> 6d9d29dc7ea5cc2bbe01e96f59ea264aaead3a8a
