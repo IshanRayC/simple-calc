@@ -1,56 +1,8 @@
-# -----------------
-# Python
-# -----------------
+venv/
 __pycache__/
 *.py[cod]
 *.pyo
-*.pyd
-
-# Bytecode & cache
-*.so
-*.egg
-*.egg-info/
-dist/
-build/
-.eggs/
-
-# Virtual environments
-venv/
-ENV/
-env/
-.venv/
-.env/
-
-# Logs
-*.log
-
-# Unit test / coverage
-.pytest_cache/
-.coverage
-.coverage.*
-htmlcov/
-.tox/
-.nox/
-.mypy_cache/
-.dmypy.json
-.pyre/
-
-# -----------------
-# Jupyter Notebooks
-# -----------------
-.ipynb_checkpoints/
-*.ipynb~  
-
-# -----------------
-# VS Code
-# -----------------
 .vscode/
-.history/
-
-# -----------------
-# OS-specific
-# -----------------
+.idea/
 .DS_Store
 Thumbs.db
-desktop.ini
-
