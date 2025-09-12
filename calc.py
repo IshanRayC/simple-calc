@@ -12,8 +12,12 @@ def div(a, b):
         raise ValueError("Division by zero")
     return a / b
 
+def pow(a,b):
+    return a**b
+
 if __name__ == "__main__":
     print("2 + 3 =", add(2,3))
     print("5 - 2 =", sub(5,2))
     print("3 * 4 =", mul(3,4))
     print("8 / 2 =", div(8,2))
+    print("9 ^ 3 =", pow(9,3))
