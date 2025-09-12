@@ -14,6 +14,12 @@ def div(a, b):
 def pow(a,b):
     return a**b
 
+def pow(a,b):
+    return a**b
+
+def mod(a,b):
+    return a%b
+
 if __name__ == "__main__":
     print("#Example of the calculator")
     print("2 + 3 =", add(2,3))
@@ -21,6 +27,7 @@ if __name__ == "__main__":
     print("3 * 4 =", mul(3,4))
     print("8 / 2 =", div(8,2))
     print("9 ^ 3 =", pow(9,3))
+    print("10 % 3 =", mod(10,3))
 
 print("for performing calculations kindly enter the number of the function")
 print("1. Addition")
@@ -28,10 +35,11 @@ print("2. Subtraction")
 print("3. Multiplication")
 print("4. Division")
 print("5. Exponentiation")
-print("6. Exit")
+print("6. Modulus")
+print("7. Exit")
 
 choice=input("Enter choice(1/2/3/4/5/6): ")
-while choice in ['1','2','3','4','5']:
+while choice in ['1','2','3','4','5','6']:
     print("Welcome to the simple calculator!")
     num1=float(input("Enter first number: "))
     num2=float(input("Enter second number: "))
@@ -48,6 +56,8 @@ while choice in ['1','2','3','4','5']:
             print(e)
     elif choice=='5':
         print(num1,"^",num2,"=",pow(num1,num2))
-    choice=input("Enter choice(1/2/3/4/5/6): ")
+    elif choice=='6':
+        print(num1,"%",num2,"=",mod(num1,num2))
+    choice=input("Enter choice(1/2/3/4/5/6/7): ")
 if choice=='6':
     print("Exiting the calculator. Goodbye!")
