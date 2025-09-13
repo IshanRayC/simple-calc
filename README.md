@@ -3,11 +3,12 @@
 A simple Python project that perfoms basic mathematical operations on any two given numbers
 
 ## Features
-- Addition
-- Subtraction
-- Multiplication
-- Division (with zero-check)
-- Exponential
+* Addition
+* Subtraction
+* Multiplication
+* Division (with zero-check)
+* Exponential
+* Modulous
 
 ## Requirements
 - Python 3.7+  
