@@ -27,8 +27,7 @@ if __name__ == "__main__":
     print("3 * 4 =", mul(3,4))
     print("8 / 2 =", div(8,2))
     print("9 ^ 3 =", pow(9,3))
-<<<<<<<<< Temporary merge branch 1
-=========
+    print("10 % 3 =", mod(10,3))
 
 print("for performing calculations kindly enter the number of the function")
 print("1. Addition")
@@ -60,6 +59,6 @@ while choice in ['1','2','3','4','5','6']:
     elif choice=='6':
         print(num1,"%",num2,"=",mod(num1,num2))
     choice=input("Enter choice(1/2/3/4/5/6/7): ")
-if choice=='6':
+if choice=='7':
     print("Exiting the calculator. Goodbye!")
->>>>>>>>> Temporary merge branch 2
+
