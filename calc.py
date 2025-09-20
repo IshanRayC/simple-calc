@@ -55,7 +55,12 @@ if __name__ == "__main__":
         n = int(input("Enter how many numbers you want to operate on: "))
         numbers = []
         for i in range(n):
-            numbers.append(float(input(f"Enter number {i+1}: ")))
+            num = float(input(f"Enter number {i+1}: "))
+            if num is not float(num):
+                print("Invalid input. Please enter numeric values only. Try again!")
+                break
+            numbers.append(num)
+                
 
         try:
             if choice == '1':
