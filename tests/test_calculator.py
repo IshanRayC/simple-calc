@@ -35,7 +35,7 @@ def test_decimal_numbers():
 
 def test_invalid_factorial():
     with pytest.raises(CalculatorError):
-        evaluate("-1!")
+        evaluate("(-1)!")
 
     with pytest.raises(CalculatorError):
         evaluate("2.5!")
