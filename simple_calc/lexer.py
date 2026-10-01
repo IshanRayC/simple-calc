@@ -13,6 +13,7 @@ class Token:
 
 _TOKEN_RE = re.compile(
     r"(?P<NUMBER>(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)"
+    r"|(?P<IDENT>[A-Za-z_][A-Za-z_0-9]*)"
     r"|(?P<OP>[+\-*/%^!])"
     r"|(?P<LPAREN>\()|(?P<RPAREN>\))|(?P<WS>\s+)"
 )
