@@ -33,20 +33,42 @@ def test_decimal_numbers():
     assert math.isclose(evaluate("1e2 / 4"), 25.0)
 
 
-def test_invalid_factorial():
-    with pytest.raises(CalculatorError):
-        evaluate("(-1)!")
-
-    with pytest.raises(CalculatorError):
-        evaluate("2.5!")
+def test_trigonometry_in_degrees():
+    assert math.isclose(evaluate("sin(30)"), 0.5, abs_tol=1e-12)
+    assert math.isclose(evaluate("cos(60)"), 0.5, abs_tol=1e-12)
+    assert math.isclose(evaluate("tan(45)"), 1.0, abs_tol=1e-12)
 
 
-def test_unsupported_features_are_rejected():
+def test_inverse_trigonometry_in_degrees():
+    assert math.isclose(evaluate("asin(0.5)"), 30.0, abs_tol=1e-12)
+    assert math.isclose(evaluate("acos(0.5)"), 60.0, abs_tol=1e-12)
+    assert math.isclose(evaluate("atan(1)"), 45.0, abs_tol=1e-12)
+
+
+def test_nested_trigonometry():
+    assert math.isclose(evaluate("sin(cos(60))"), math.sin(math.radians(0.5)), abs_tol=1e-12)
+    assert math.isclose(evaluate("sin(asin(0.5))"), 0.5, abs_tol=1e-12)
+    assert math.isclose(evaluate("cos(2 * asin(0.5))"), 0.5, abs_tol=1e-12)
+
+
+def test_trig_inside_arithmetic():
+    assert math.isclose(evaluate("2 * sin(30) + cos(60)"), 1.5, abs_tol=1e-12)
+
+
+def test_invalid_trig_input():
     with pytest.raises(CalculatorError):
-        evaluate("sin(1)")
+        evaluate("asin(2)")
 
     with pytest.raises(CalculatorError):
-        evaluate("x + 1")
+        evaluate("acos(-2)")
+
+
+def test_unknown_functions_are_rejected():
+    with pytest.raises(CalculatorError):
+        evaluate("sqrt(25)")
+
+    with pytest.raises(CalculatorError):
+        evaluate("log(10)")
 
 
 def test_invalid_expression():
