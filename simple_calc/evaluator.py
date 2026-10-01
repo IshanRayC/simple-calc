@@ -30,6 +30,22 @@ def evaluate_node(node: Node) -> float:
             except (OverflowError, ValueError) as exc:
                 raise EvaluationError(str(exc)) from exc
 
+        try:
+            if node.operator == "sin":
+                return _number(math.sin(math.radians(value)))
+            if node.operator == "cos":
+                return _number(math.cos(math.radians(value)))
+            if node.operator == "tan":
+                return _number(math.tan(math.radians(value)))
+            if node.operator == "asin":
+                return _number(math.degrees(math.asin(value)))
+            if node.operator == "acos":
+                return _number(math.degrees(math.acos(value)))
+            if node.operator == "atan":
+                return _number(math.degrees(math.atan(value)))
+        except (ValueError, OverflowError) as exc:
+            raise EvaluationError(str(exc)) from exc
+
         raise EvaluationError(f"Unsupported unary operator: {node.operator}")
 
     if isinstance(node, BinaryOp):
