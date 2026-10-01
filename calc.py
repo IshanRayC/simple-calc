@@ -8,8 +8,9 @@ from simple_calc.errors import CalculatorError
 def main() -> None:
     print("Simple Calc — arithmetic expression engine")
     print("Supported: +  -  *  /  %  ^  !")
+    print("Functions: sin cos tan asin acos atan (angles in degrees)")
     print("Type an expression or 'quit' to exit.")
-    print("Examples: 2 + 3*4 | 2^8 | 10%3 | 5! | (2+3)*4")
+    print("Examples: 2 + 3*4 | sin(30) | asin(0.5) | sin(cos(60))")
 
     while True:
         try:
