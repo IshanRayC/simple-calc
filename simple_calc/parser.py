@@ -3,6 +3,9 @@ from .errors import ParserError
 from .lexer import Token, tokenize
 
 
+TRIG_FUNCTIONS = {"sin", "cos", "tan", "asin", "acos", "atan"}
+
+
 class Parser:
     def __init__(self, text: str):
         self.tokens = tokenize(text)
@@ -56,12 +59,10 @@ class Parser:
     def power(self) -> Node:
         node = self.primary()
 
-        # Factorial is postfix and binds tighter than exponentiation.
         while self.current.kind == "OP" and self.current.value == "!":
             self.advance()
             node = UnaryOp("!", node)
 
-        # Exponentiation is right-associative: 2^3^2 == 2^(3^2).
         if self.current.kind == "OP" and self.current.value == "^":
             self.advance()
             node = BinaryOp("^", node, self.unary())
@@ -74,6 +75,15 @@ class Parser:
             self.advance()
             return Number(float(token.value))
 
+        if token.kind == "IDENT":
+            name = self.advance().value.lower()
+            if name not in TRIG_FUNCTIONS:
+                raise ParserError(f"Unknown function {name!r} at position {token.position}")
+            self.expect("LPAREN")
+            argument = self.expression()
+            self.expect("RPAREN")
+            return UnaryOp(name, argument)
+
         if token.kind == "LPAREN":
             self.advance()
             node = self.expression()
@@ -81,7 +91,7 @@ class Parser:
             return node
 
         raise ParserError(
-            f"Expected number or '(' at position {token.position}"
+            f"Expected number, function, or '(' at position {token.position}"
         )
 
 
