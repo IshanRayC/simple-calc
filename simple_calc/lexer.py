@@ -9,10 +9,10 @@ class Token:
     position: int
 
 _TOKEN_RE = re.compile(
-    r"(?P<NUMBER>(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:[eE][+-]?\\d+)?)"
-    r"|(?P<IDENT>[A-Za-z_]\\w*)"
-    r"|(?P<OP>[+\\-*/%^])"
-    r"|(?P<LPAREN>\\()|(?P<RPAREN>\\))|(?P<COMMA>,)|(?P<WS>\\s+)"
+    r"(?P<NUMBER>(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)"
+    r"|(?P<IDENT>[A-Za-z_]\w*)"
+    r"|(?P<OP>[+\-*/%^])"
+    r"|(?P<LPAREN>\()|(?P<RPAREN>\))|(?P<COMMA>,)|(?P<WS>\s+)"
 )
 
 def tokenize(text: str) -> list[Token]:
