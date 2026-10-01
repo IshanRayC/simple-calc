@@ -1,154 +1,122 @@
 # Simple Calc
 
-A beginner-friendly mathematical expression engine written in Python. It takes a string expression, tokenizes it, parses it into an AST, and evaluates the AST **without using Python `eval()`**.
+A beginner-friendly arithmetic expression engine written in Python.
 
-## What can it calculate?
+Simple Calc takes an expression, tokenizes it, parses it into an **Abstract Syntax Tree (AST)**, and evaluates the AST without using Python's `eval()`.
 
-- **Arithmetic:** `+`, `-`, `*`, `/`
-- **Power:** `^` and `pow(a, b)`
-- **Modulo:** `%` and `mod(a, b)`
-- **Parentheses and operator precedence**
-- **Constants:** `pi`, `e`, `tau`
-- **Trigonometry:** `sin`, `cos`, `tan`, `asin`, `acos`, `atan` (radians)
-- **Exponential/logarithmic functions:** `exp`, `ln`, `log`
-- **Square root and absolute value:** `sqrt`, `abs`
-- **Statistics:** `mean`, `avg`, `average`, `std`, `sample_std`
-- **Numerical calculus:** `derivative(...)` and `integral(...)`
-- **Variables:** for example, `2*x + 1` with `x` supplied programmatically
+## Current scope
 
-## Quick examples
+For now, the calculator supports only these arithmetic operators:
+
+| Operator | Meaning | Example |
+|---|---|---|
+| `+` | Addition | `2 + 3` |
+| `-` | Subtraction | `7 - 4` |
+| `*` | Multiplication | `6 * 5` |
+| `/` | Division | `20 / 4` |
+| `%` | Modulo | `17 % 5` |
+| `^` | Power | `2 ^ 8` |
+| `!` | Factorial | `5!` |
+
+Parentheses are also supported for grouping, and the parser respects operator precedence.
+
+### Examples
 
 ```text
-2 + 3 * 4                 -> 14
-(2 + 3) * 4               -> 20
-2^3^2                     -> 512
-17 % 5                    -> 2
-sin(pi / 2)               -> 1
-sqrt(25) + 2^3            -> 13
-mean(10, 20, 30, 40)      -> 25
-std(10, 20, 30, 40)       -> 11.180339887...
-derivative(x^2, x, 3)     -> approximately 6
-integral(x^2, x, 0, 3)    -> 9
+2 + 3 * 4       -> 14
+(2 + 3) * 4     -> 20
+20 / 5          -> 4
+17 % 5          -> 2
+2^3^2           -> 512
+5!              -> 120
+3!^2            -> 36
+(3 + 2)!        -> 120
 ```
 
-# How to use it
+Factorial is currently limited to **non-negative integers**.
 
-## 1. Get the project from GitHub
+## What is intentionally not supported yet?
 
-If you are new to GitHub, the easiest method is:
+The project previously contained extra functionality such as trigonometry, statistics, variables, and numerical calculus. Those features have been removed from the current version so that the parsing and calculation core stays small and easy to understand.
 
-1. Open the repository on GitHub.
-2. Click the green **Code** button.
-3. Choose **Download ZIP**.
-4. Extract the ZIP somewhere easy, such as your Desktop.
-5. Open the extracted `simple-calc` folder in VS Code.
+They can be added back later as separate features once the core arithmetic engine is solid.
 
-If you already know Git, you can clone it instead:
+## How to use it
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/IshanRayC/simple-calc.git
 cd simple-calc
 ```
 
-## 2. Check that Python is installed
+### 2. Check Python
 
-Open a terminal in the project folder and run:
+Windows:
 
-```bash
+```powershell
 python --version
 ```
 
-You should see Python 3.x.
+If `python` is unavailable, try:
 
-On some Windows installations, use:
-
-```bash
+```powershell
 py --version
 ```
 
-## 3. Create a virtual environment
+### 3. Create a virtual environment
 
-### Windows
+Windows:
 
-```bash
+```powershell
 python -m venv .venv
 .venv\\Scripts\\activate
 ```
 
-If `python` does not work, try:
-
-```bash
-py -m venv .venv
-.venv\\Scripts\\activate
-```
-
-### macOS / Linux
+macOS/Linux:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-After activation, your terminal should show something like `(.venv)`.
-
-## 4. Install the test dependency
+### 4. Install test dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-## 5. Start the calculator
-
-You can run:
+### 5. Run Simple Calc
 
 ```bash
 python calc.py
 ```
 
-or:
+You can also run:
 
 ```bash
 python -m simple_calc
 ```
 
-You will see:
+Example session:
 
 ```text
-Simple Calc — expression engine
+Simple Calc — arithmetic expression engine
+Supported: +  -  *  /  %  ^  !
 Type an expression or 'quit' to exit.
-calc>
-```
-
-Now type expressions such as:
-
-```text
+Examples: 2 + 3*4 | 2^8 | 10%3 | 5! | (2+3)*4
+calc> 5!
+120.0
 calc> 2 + 3 * 4
-14
-
-calc> sin(pi / 2)
-1.0
-
-calc> mean(10, 20, 30, 40)
-25.0
-
-calc> derivative(x^2, x, 3)
-6.0
-
-calc> integral(x^2, x, 0, 3)
-9.0
+14.0
+calc> quit
 ```
 
-Type `quit` to stop.
-
-## 6. Run the automated tests
-
-From the project folder, run:
+### 6. Run the tests
 
 ```bash
 python -m pytest
 ```
-
-Pytest will run the tests in `tests/` and report which tests passed or failed.
 
 ## Project structure
 
@@ -176,31 +144,26 @@ simple-calc/
 ## Architecture
 
 ```text
-User input string
-      |
-      v
+Expression
+    |
+    v
 Lexer / Tokenizer
-      |
-      v
-Recursive-descent Parser
-      |
-      v
-AST (Abstract Syntax Tree)
-      |
-      v
+    |
+    v
+Parser
+    |
+    v
+AST
+    |
+    v
 Evaluator
-      |
-      v
+    |
+    v
 Number / Result
 ```
 
-The parser handles operator precedence and right-associative exponentiation. The evaluator never executes the input as Python code.
+The parser handles precedence and right-associative exponentiation. The evaluator performs the arithmetic directly on the AST and never executes the input as Python code.
 
-## Calculus note
+## Roadmap
 
-The current calculus implementation is **numerical, not symbolic**:
-
-- derivatives use a central finite difference
-- definite integrals use composite Simpson's rule
-
-Symbolic differentiation and integration can be added later as a separate engine layer.
+The immediate goal is to make the core arithmetic engine reliable and easy to understand. More advanced mathematical features can be added later without making the initial parser unnecessarily complicated.
