@@ -1,84 +1,19 @@
-def add(numbers):
-    return sum(numbers)
+#!/usr/bin/env python3
+"""Interactive command-line interface for Simple Calc."""
+from simple_calc import evaluate
+from simple_calc.errors import CalculatorError
 
-def sub(numbers):
-    result = numbers[0]
-    for num in numbers[1:]:
-        result -= num
-    return result
-
-def mul(numbers):
-    result = 1
-    for num in numbers:
-        result *= num
-    return result
-
-def div(numbers):
-    result = numbers[0]
-    for num in numbers[1:]:
-        if num == 0:
-            raise ValueError("Division by zero")
-        result /= num
-    return result
-
-def pow(numbers):
-    result = numbers[0]
-    for num in numbers[1:]:
-        result **= num
-    return result
-
-def mod(numbers):
-    result = numbers[0]
-    for num in numbers[1:]:
-        result %= num
-    return result
-
-
-if __name__ == "__main__":
-    print("Welcome to the n-number calculator!")
-    print("Choose the operation you want to perform:")
-    print("1. Addition")
-    print("2. Subtraction")
-    print("3. Multiplication")
-    print("4. Division")
-    print("5. Exponentiation")
-    print("6. Modulus")
-    print("7. Exit")
-
+def main() -> None:
+    print("Simple Calc — expression engine")
+    print("Type an expression or 'quit' to exit.")
+    print("Examples: 2 + 3*4 | sin(pi/2) | mean(1,2,3) | derivative(x^2,x,3)")
     while True:
-        choice = input("Enter choice (1/2/3/4/5/6/7): ")
+        try: expression = input("calc> ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print(); break
+        if expression.lower() in {"quit", "exit"}: break
+        if not expression: continue
+        try: print(evaluate(expression))
+        except CalculatorError as exc: print(f"Error: {exc}")
 
-        if choice == '7':
-            print("Exiting the calculator. Goodbye!")
-            break
-
-        n = int(input("Enter how many numbers you want to operate on: "))
-        numbers = []
-        for i in range(n):
-            num = float(input(f"Enter number {i+1}: "))
-            if num is not float(num):
-                print("Invalid input. Please enter numeric values only. Try again!")
-                break
-            numbers.append(num)
-                
-
-        try:
-            if choice == '1':
-                print("Result =", add(numbers))
-            elif choice == '2':
-                print("Result =", sub(numbers))
-            elif choice == '3':
-                print("Result =", mul(numbers))
-            elif choice == '4':
-                print("Result =", div(numbers))
-            elif choice == '5':
-                print("Result =", pow(numbers))
-            elif choice == '6':
-                print("Result =", mod(numbers))
-            else:
-                print("Invalid choice. Try again!")
-        except ValueError as e:
-            print(e,"Try again!,Can't divide by zero")
-            
-
-
+if __name__ == "__main__": main()
