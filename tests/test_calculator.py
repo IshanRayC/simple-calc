@@ -7,6 +7,7 @@ def test_arithmetic_precedence():
     assert evaluate("2 + 3 * 4") == 14
     assert evaluate("(2 + 3) * 4") == 20
     assert evaluate("2^3^2") == 512
+    assert evaluate("-2^2") == -4
 
 def test_math_functions():
     assert math.isclose(evaluate("sin(pi / 2)"), 1.0, abs_tol=1e-12)
